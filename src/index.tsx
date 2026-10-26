@@ -8,6 +8,7 @@ import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./material/MaterialTheme";
 import { BrowserRouter as Router } from "react-router-dom";
+//@ts-ignore
 import "./css/index.css";
 
 const container = document.getElementById("root");
