@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Route, Switch, useLocation } from "react-router-dom";
 import { Container } from "@mui/material";
 import HomePage from "./screens/homePage/indext";
+//@ts-ignore
 import ProductsPage from "./screens/productsPage";
 import OrdersPage from "./screens/ordersPage";
 import UserPage from "./screens/userPage";

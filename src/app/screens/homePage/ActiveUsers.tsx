@@ -1,58 +1,43 @@
-import React from "react";
-import { Container, Stack } from "@mui/material";
-import { Box } from "@mui/system";
-import { CssVarsProvider } from "@mui/joy";
+import { Box, Container, Stack } from "@mui/material";
 import Card from "@mui/joy/Card";
-import CardCover from "@mui/joy/CardCover";
-import CardContent from "@mui/joy/CardContent";
-import Typography from "@mui/joy/Typography";
+import { CssVarsProvider, Typography } from "@mui/joy";
+import CardOverflow from "@mui/joy/CardOverflow";
+import AspectRatio from "@mui/joy/AspectRatio";
 
 const activeUsers = [
-  {
-    memberNick: "Martin",
-    memberImage: "/img/martin%20(2).webp",
-  },
-  {
-    memberNick: "Justin",
-    memberImage: "/img/justin%20(2).webp",
-  },
-  {
-    memberNick: "Rose",
-    memberImage: "/img/rose%20(2).webp",
-  },
-  {
-    memberNick: "Nusret",
-    memberImage: "/img/nusret%20(2).webp",
-  },
+  { memberNick: "Martin", memberImage: "/img/martin (2).webp" },
+  { memberNick: "Justin", memberImage: "/img/justin (2).webp" },
+  { memberNick: "Rose", memberImage: "/img/rose (2).webp" },
+  { memberNick: "Nusret", memberImage: "/img/nusret (2).webp" },
 ];
 
 export default function ActiveUsers() {
   return (
-    <div className="active-users-frame">
+    <div className={"active-users-frame"}>
       <Container>
-        <Stack className="main">
-          <Box className="category-title">Active Users</Box>
-
-          <Stack className="cards-frame">
+        <Stack className={"main"}>
+          <Box className={"category-title"}>Active Users</Box>
+          <Stack className={"cards-frame"}>
             <CssVarsProvider>
-              {activeUsers.length > 0 ? (
-                activeUsers.map((ele, index) => (
-                  <Card key={index} className="card">
-                    <CardCover>
-                      <img src={ele.memberImage} alt={ele.memberNick} />
-                    </CardCover>
-
-                    <CardCover className="card-cover" />
-
-                    <CardContent sx={{ justifyContent: "flex-end" }}>
-                      <Typography level="h2" fontSize="lg" textColor="#fff">
-                        {ele.memberNick}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                ))
+              {activeUsers.length !== 0 ? (
+                activeUsers.map((ele, index) => {
+                  return (
+                    <Card key={index} variant="outlined" className={"card"}>
+                      <CardOverflow>
+                        <AspectRatio ratio="1">
+                          <img src={ele.memberImage} alt="" />
+                        </AspectRatio>
+                      </CardOverflow>
+                      <CardOverflow>
+                        <Typography className={"member-nickname"}>
+                          {ele.memberNick}
+                        </Typography>
+                      </CardOverflow>
+                    </Card>
+                  );
+                })
               ) : (
-                <Box className="no-data">No Active User</Box>
+                <Box className="no-data">No Active Users!</Box>
               )}
             </CssVarsProvider>
           </Stack>

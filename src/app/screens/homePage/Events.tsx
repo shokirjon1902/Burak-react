@@ -1,5 +1,5 @@
 import { Box, Stack } from "@mui/material";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react"; // @ts-ignore
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import { plans } from "../../../lib/data/plans";
 
@@ -43,7 +43,7 @@ export default function Events() {
                       <div className={"event-title-speaker"}>
                         <strong>{value.title}</strong>
                         <div className={"event-organizator"}>
-                          <img src={"/icons/speaker.svg"} />
+                          <img src={"/icons/speaker (4).svg"} />
                           <p className={"spec-text-author"}>{value.author}</p>
                         </div>
                       </div>
