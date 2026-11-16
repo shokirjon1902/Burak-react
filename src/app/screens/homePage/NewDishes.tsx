@@ -8,34 +8,45 @@ import { CssVarsProvider } from "@mui/joy/styles";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import Divider from "../../components/divider/index (1)";
 
-const newDishes = [
-  { productName: "Cutlet", imagePath: "/img/cutlet (1).webp" },
-  {
-    productName: "Kebab",
-    imagePath: "/img/kebab-fresh (2).webp",
-  },
-  { productName: "Kebab", imagePath: "/img/kebab (2).webp" },
-  { productName: "Lavash", imagePath: "/img/lavash (2).webp" },
-];
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retreveNewDishes } from "./selector";
+import { Product } from "../../../lib/types/product";
+import { serverApi } from "../../../lib/config";
+import { ProductCollection } from "../../../lib/enums/product.enum";
+
+/** REDUX SLICE & SproductCTOR **/
+
+const newDishesRetriever = createSelector(retreveNewDishes, (newDishes) => ({
+  newDishes,
+}));
 
 export default function NewDishes() {
+  const { newDishes } = useSelector(newDishesRetriever);
+
+  console.log("newDishes:", newDishes);
+
   return (
     <div className="new-products-frame">
       <Container>
         <Stack className="main">
           <Box className="category-tittle">Fresh Menu</Box>
-
           <Stack className="cards-frame">
             <CssVarsProvider>
               {newDishes.length > 0 ? (
-                newDishes.map((ele, index) => {
+                newDishes.map((product: Product) => {
+                  const imagePath = `${serverApi}/${product.productImages[0]}`;
+                  const sizeVolume =
+                    product.productCollection === ProductCollection.DRINKS
+                      ? product.productVolume + "l"
+                      : product.productSize + "size";
                   return (
-                    <Card key={index} variant="outlined" className="card">
+                    <Card key={product._id} variant="outlined" className="card">
                       <CardOverflow>
-                        <div className="product-sale">Normal size</div>
+                        <div className="product-sale">{sizeVolume}</div>
 
                         <AspectRatio ratio="1">
-                          <img src={ele.imagePath} alt={ele.productName} />
+                          <img src={imagePath} alt={product.productName} />
                         </AspectRatio>
                       </CardOverflow>
 
@@ -43,17 +54,19 @@ export default function NewDishes() {
                         <Stack className="info">
                           <Stack flexDirection="row">
                             <Typography className="title">
-                              {ele.productName}
+                              {product.productName}
                             </Typography>
 
                             <Divider width="2" height="24" bg="#d9d9d9" />
 
-                            <Typography className="price">$12</Typography>
+                            <Typography className="price">
+                              ${String(product.productPrice)}
+                            </Typography>
                           </Stack>
 
                           <Stack>
                             <Typography className="views">
-                              20
+                              {String(product.productViews)}
                               <VisibilityIcon
                                 sx={{
                                   fontSize: 20,
