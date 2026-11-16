@@ -17,7 +17,12 @@ export default function ActiveUsers() {
       <Container>
         <Stack className={"main"}>
           <Box className={"category-title"}>Active Users</Box>
-          <Stack className={"cards-frame"}>
+          <Stack
+            className={"cards-frame"}
+            direction="row"
+            spacing={2}
+            flexWrap="wrap"
+          >
             <CssVarsProvider>
               {activeUsers.length !== 0 ? (
                 activeUsers.map((ele, index) => {

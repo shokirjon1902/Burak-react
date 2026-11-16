@@ -18,7 +18,7 @@ const products = [
   { productName: "Kebab", imagePath: "/img/kebab (2).webp" },
   { productName: "Lavash", imagePath: "/img/lavash (2).webp" },
   { productName: "Lavash", imagePath: "/img/lavash (2).webp" },
-  { productName: "Cutlet", imagePath: "/img/cutlet (2).webp" },
+  { productName: "Cutlet", imagePath: "/img/cutlet (1).webp" },
   { productName: "Kebab", imagePath: "/img/kebab (2).webp" },
   { productName: "Kebab", imagePath: "/img/kebab-fresh (2).webp" },
 ];
@@ -103,7 +103,7 @@ export default function Products() {
                     <Stack key={index} className={"product-card"}>
                       <Stack
                         className={"product-img"}
-                        sx={{ backgroundImage: `url(${product.imagePath})` }}
+                        sx={{ backgroundImage: `url("${product.imagePath}")` }}
                       >
                         <div className={"product-sale"}>Normal size</div>
                         <Button className={"shop-btn"}>

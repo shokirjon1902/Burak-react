@@ -2,7 +2,7 @@ import {
   ProductCollection,
   ProductSize,
   ProductStatus,
-} from "../enums/product.enum";
+} from "../../enums/product.enum";
 
 export interface Product {
   _id: string;
