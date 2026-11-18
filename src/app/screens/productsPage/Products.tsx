@@ -142,12 +142,12 @@ export default function Products() {
               <Button
                 variant={"contained"}
                 color={
-                  productSearch.order === "ProductViews"
+                  productSearch.order === "productViews"
                     ? "primary"
                     : "secondary"
                 }
                 className={"order"}
-                onClick={() => searchOrderHandler("ProductViews")}
+                onClick={() => searchOrderHandler("productViews")}
               >
                 Views
               </Button>
@@ -187,12 +187,12 @@ export default function Products() {
                 <Button
                   variant={"contained"}
                   color={
-                    productSearch.productCollection === ProductCollection.DRINK
+                    productSearch.productCollection === ProductCollection.DRINKS
                       ? "primary"
                       : "secondary"
                   }
                   onClick={() =>
-                    searchCollectionHandler(ProductCollection.DRINK)
+                    searchCollectionHandler(ProductCollection.DRINKS)
                   }
                 >
                   Drink
@@ -231,7 +231,7 @@ export default function Products() {
                 products.map((product: Product) => {
                   const imagePath = `${serverApi}/${product.productImages[0]}`;
                   const sizeVolume =
-                    product.productCollection === ProductCollection.DRINK
+                    product.productCollection === ProductCollection.DRINKS
                       ? product.productVolume + "litre"
                       : product.productSize + "size";
                   return (
