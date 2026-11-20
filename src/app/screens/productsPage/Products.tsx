@@ -19,6 +19,7 @@ import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
 import { serverApi } from "../../../lib/config";
 import { useHistory } from "react-router-dom";
+import { CartItem } from "../../../lib/types/search";
 
 /** REDUX SLICE & SELECTOR **/
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -28,7 +29,12 @@ const productsRetriever = createSelector(retrieveProducts, (products) => ({
   products,
 }));
 
-export default function Products() {
+interface ProductsProps {
+  onAdd: (item: CartItem) => void;
+}
+
+export default function Products(props: ProductsProps) {
+  const { onAdd } = props;
   const { setProducts } = actionDispatch(useDispatch());
   const { products } = useSelector(productsRetriever);
   const [productSearch, setProductSearch] = useState<ProductInquiry>({
@@ -229,7 +235,7 @@ export default function Products() {
             <Stack className={"product-wrapper"}>
               {products.length !== 0 ? (
                 products.map((product: Product) => {
-                  const imagePath = `${serverApi}/${product.productImages[0]}`;
+                  const imagePath = `${serverApi}/${product.productImages[0].replace(/\\/g, "/")}`;
                   const sizeVolume =
                     product.productCollection === ProductCollection.DRINKS
                       ? product.productVolume + "litre"
@@ -245,7 +251,20 @@ export default function Products() {
                         sx={{ backgroundImage: `url("${imagePath}")` }}
                       >
                         <div className={"product-sale"}>{sizeVolume}</div>
-                        <Button className={"shop-btn"}>
+                        <Button
+                          className={"shop-btn"}
+                          onClick={(e) => {
+                            console.log("BUTTON PRESSED");
+                            onAdd({
+                              _id: product._id,
+                              quantity: 1,
+                              name: product.productName,
+                              price: Number(product.productPrice),
+                              image: product.productImages[0],
+                            });
+                            e.stopPropagation();
+                          }}
+                        >
                           <img
                             src={"/icons/shopping-cart (4).svg"}
                             style={{ display: "flex" }}
