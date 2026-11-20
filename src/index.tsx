@@ -6,7 +6,7 @@ import App from "./app/App";
 import reportWebVitals from "./reportWebVitals";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "./material/MaterialTheme";
+import theme from "./app/MaterialTheme";
 import { BrowserRouter as Router } from "react-router-dom";
 //@ts-ignore
 import "./css/index.css";
