@@ -7,25 +7,24 @@ import reportWebVitals from "./reportWebVitals";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./app/MaterialTheme";
-import { BrowserRouter as Router } from "react-router-dom";
-//@ts-ignore
+import { BrowserRouter as Router } from "react-router-dom"; //@ts-ignore
 import "./css/index.css";
+import ContextProvider from "./app/context/ContextProvider";
 
-const container = document.getElementById("root");
-if (!container) {
-  throw new Error('Root element "root" was not found');
-}
+const container = document.getElementById("root")!;
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline></CssBaseline>
-        <Router>
-          <App />
-        </Router>
-      </ThemeProvider>
+      <ContextProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline></CssBaseline>
+          <Router>
+            <App />
+          </Router>
+        </ThemeProvider>
+      </ContextProvider>
     </Provider>
   </React.StrictMode>,
 );
