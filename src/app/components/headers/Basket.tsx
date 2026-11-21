@@ -15,7 +15,7 @@ interface BasketProps {
   onAdd: (item: CartItem) => void;
   onRemove: (item: CartItem) => void;
   onDelete: (item: CartItem) => void;
-  onDeleteAll: (item: CartItem) => void;
+  onDeleteAll: () => void;
 }
 
 export default function Basket(props: BasketProps) {
@@ -102,7 +102,7 @@ export default function Basket(props: BasketProps) {
                 <DeleteForeverIcon
                   sx={{ ml: "5px", cursor: "pointer" }}
                   color={"primary"}
-                  onClick={() => onDeleteAll()}
+                  onClick={onDeleteAll}
                 />
               </Stack>
             )}
